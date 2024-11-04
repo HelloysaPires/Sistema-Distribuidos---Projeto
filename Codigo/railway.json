@@ -1,9 +1,14 @@
 {
   "build": {
-    "image": "python:3.8",
-    "command": "python Registro de Serviços/registro_de_servicos.py"
+    "env": {
+      "PORT": "9000"
+    },
+    "commands": {
+      "install": "pip install -r Registro de Serviços/requirements.txt",
+      "start": "python Registro de Serviços/registro_de_servicos.py"
+    }
   },
-  "start": {
+  "deploy": {
     "command": "python Registro de Serviços/registro_de_servicos.py"
   }
 }
