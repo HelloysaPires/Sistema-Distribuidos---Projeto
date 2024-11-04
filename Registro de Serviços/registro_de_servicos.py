@@ -51,14 +51,12 @@ def consultar_servidor():
 
 # Iniciar o servidor de registro de serviços
 def iniciar_registro():
-    with SimpleXMLRPCServer(("localhost", 9000), allow_none=True) as server:
+    port = int(os.getenv("PORT", 9000))  # usa 9000 como padrão
+    with SimpleXMLRPCServer(("0.0.0.0", port), allow_none=True) as server:
         server.register_function(registrar_servidor, "registrar_servidor")
         server.register_function(atualizar_status_servidor, "atualizar_status_servidor")
         server.register_function(consultar_servidor, "consultar_servidor")
-        
-        # Thread para monitorar os servidores que se registram
         threading.Thread(target=monitorar_servidores, daemon=True).start()
-        
         print("Registro de Serviços em execução...")
         server.serve_forever()
 
