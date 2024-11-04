@@ -1,0 +1,9 @@
+{
+  "build": {
+    "image": "python:3.8",
+    "command": "python Registro de Serviços/registro_de_servicos.py"
+  },
+  "start": {
+    "command": "python Registro de Serviços/registro_de_servicos.py"
+  }
+}
