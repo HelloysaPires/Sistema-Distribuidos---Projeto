@@ -6,6 +6,6 @@
     }
   },
   "start": {
-    "command": "python registro_de_servico.py"
+    "command": "python registro_de_servicos.py"
   }
 }
