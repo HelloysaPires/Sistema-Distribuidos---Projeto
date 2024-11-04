@@ -1,8 +1,11 @@
 {
-  build {
-    builder NIXPACKS
+  "build": {
+    "command": "pip install -r requirements.txt",
+    "environment": {
+      "PORT": "9000"
+    }
   },
-  deploy {
-    startCommand python3 registro_de_servico.py
+  "start": {
+    "command": "python registro_de_servico.py"
   }
 }
