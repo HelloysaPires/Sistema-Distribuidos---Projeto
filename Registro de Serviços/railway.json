@@ -1,0 +1,14 @@
+{
+  "build": {
+    "env": {
+      "PORT": "9000"  // Pode ser definido como "PORT"
+    },
+    "commands": {
+      "install": "pip install -r requirements.txt", // Instala as dependências do registro de serviços
+      "start": "python registro_de_servicos.py" // Comando para iniciar o serviço de registro
+    }
+  },
+  "deploy": {
+    "command": "python registro_de_servicos.py" // Comando para rodar o serviço após o build
+  }
+}
