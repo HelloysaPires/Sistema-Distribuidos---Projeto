@@ -1,7 +1,8 @@
-import xmlrpc.client
+import xmlrpc.client 
 from xmlrpc.server import SimpleXMLRPCServer
 import threading
 import time
+import os  # Adicione esta linha para importar a biblioteca os
 
 # Estrutura para armazenar informações dos servidores
 servidores = {}
@@ -36,7 +37,6 @@ def atualizar_status_servidor(ip):
     else:
         print(f"Servidor {ip} não encontrado.")
 
-
 # Thread que verifica e atualiza status dos servidores periodicamente
 def monitorar_servidores():
     while True:
@@ -52,11 +52,14 @@ def consultar_servidor():
 # Iniciar o servidor de registro de serviços
 def iniciar_registro():
     port = int(os.getenv("PORT", 9000))  # usa 9000 como padrão
-    with SimpleXMLRPCServer(("0.0.0.0", port), allow_none=True) as server:
+    with SimpleXMLRPCServer(("localhost", port), allow_none=True) as server:
         server.register_function(registrar_servidor, "registrar_servidor")
         server.register_function(atualizar_status_servidor, "atualizar_status_servidor")
         server.register_function(consultar_servidor, "consultar_servidor")
+        
+        # Thread para monitorar os servidores que se registram
         threading.Thread(target=monitorar_servidores, daemon=True).start()
+        
         print("Registro de Serviços em execução...")
         server.serve_forever()
 
