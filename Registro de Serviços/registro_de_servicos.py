@@ -10,7 +10,7 @@ servidores = {}
 app = Flask(__name__)
 
 # Função para registrar ou atualizar informações de um servidor
-@app.route("/registrar_servidor", methods=["POST"])
+@app.route("/registrar-servidor", methods=["POST"])
 def registrar_servidor():
     dados = request.json
     ip = dados["ip"]
@@ -22,8 +22,8 @@ def registrar_servidor():
         'threads': threads,
         'sobrecarregado': False
     }
-    print(f"Servidor {ip} registrado/atualizado com sucesso.")
-    return jsonify({"message": f"Servidor {ip} registrado/atualizado com sucesso."}), 200
+    print(f"Servidor {ip} registrado com sucesso.")
+    return jsonify({"message": f"Servidor {ip} registrado com sucesso."}), 200
 
 # Função para atualizar o status de threads e checar se o servidor está ativo
 def atualizar_status_servidor(ip):
